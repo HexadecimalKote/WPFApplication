@@ -4,22 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
+        
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <col:ArrayList x:Key="days">
+            <sys:String>Понедельник</sys:String>
+            <sys:String>Вторник</sys:String>
+            <sys:String>Среда</sys:String>
+            <sys:String>Четверг</sys:String>
+            <sys:String>Пятница</sys:String>
+            <sys:String>Суббота</sys:String>
+            <sys:String>Воскресенье</sys:String>
+        </col:ArrayList>
+    </Window.Resources>
+    
     <Grid Name="LayoutGrid">
-        <Button Width="100" 
-                Height="30" 
-                Content="Кнопка из XAML" 
-                Click="Button_Click">
-            
-            <Button.HorizontalAlignment>
-                <HorizontalAlignment>Left</HorizontalAlignment>
-            </Button.HorizontalAlignment>
-
-            <Button.Background>
-                <SolidColorBrush Opacity="0.5" Color="Red" />
-            </Button.Background>
-
+        <Button x:Name="phoneButton" Width="250" Height="40" HorizontalAlignment="Center">
+            <Button.Content>
+                <local:Phone Name="Lumia 950" Price="700" />
+            </Button.Content>
         </Button>
     </Grid>
 </Window>

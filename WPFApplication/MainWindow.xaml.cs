@@ -23,35 +23,6 @@ namespace WPFApplication
         public MainWindow()
         {
             InitializeComponent();
-            CreateButton();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("XAML created button");
-        }
-
-        private void CreateButton()
-        {
-            Button myButton = new Button()
-            {
-                Width = 100,
-                Height = 30,
-                Content = "Кнопка из C#"
-            };
-            myButton.Click += OnMyButtonClick;
-            myButton.HorizontalAlignment = HorizontalAlignment.Center;
-
-            myButton.Background = (Brush)System.ComponentModel.TypeDescriptor
-            .GetConverter(typeof(Brush)).ConvertFromInvariantString("Red");
-            //myButton.Background = new SolidColorBrush(Colors.Red);
-
-            LayoutGrid.Children.Add(myButton);
-        }
-
-        private void OnMyButtonClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("C# created button");
         }
     }
 }
