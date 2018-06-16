@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:WPFApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Name="LayoutGrid">
+        <Button Width="100" 
+                Height="30" 
+                Content="Кнопка из XAML" 
+                HorizontalAlignment="Left" 
+                Click="Button_Click"></Button>
     </Grid>
 </Window>
