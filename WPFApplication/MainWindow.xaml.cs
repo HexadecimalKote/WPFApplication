@@ -40,6 +40,12 @@ namespace WPFApplication
                 Content = "Кнопка из C#"
             };
             myButton.Click += OnMyButtonClick;
+            myButton.HorizontalAlignment = HorizontalAlignment.Center;
+
+            myButton.Background = (Brush)System.ComponentModel.TypeDescriptor
+            .GetConverter(typeof(Brush)).ConvertFromInvariantString("Red");
+            //myButton.Background = new SolidColorBrush(Colors.Red);
+
             LayoutGrid.Children.Add(myButton);
         }
 

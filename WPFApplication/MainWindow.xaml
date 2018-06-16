@@ -10,7 +10,16 @@
         <Button Width="100" 
                 Height="30" 
                 Content="Кнопка из XAML" 
-                HorizontalAlignment="Left" 
-                Click="Button_Click"></Button>
+                Click="Button_Click">
+            
+            <Button.HorizontalAlignment>
+                <HorizontalAlignment>Left</HorizontalAlignment>
+            </Button.HorizontalAlignment>
+
+            <Button.Background>
+                <SolidColorBrush Opacity="0.5" Color="Red" />
+            </Button.Background>
+
+        </Button>
     </Grid>
 </Window>
