@@ -5,31 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"   
         mc:Ignorable="d"
-        Title="StackPanel" Height="350" Width="600">
+        Title="DockPanel" Height="350" Width="600">
 
+    <!-- DockPanel - прижимает свое содержимое к определенной стороне внешнего контейнера -->
+    <!--LastChildFill = последний эл. заполнить все оставшееся пространство -->
+    <DockPanel LastChildFill="True">
+        <!-- Default DockPanel.Dock = Left -->
+        <Button DockPanel.Dock="Top"    Background="Cyan" Content="Top"/>
+        <Button DockPanel.Dock="Bottom"  Background="DarkGoldenrod" Content="Bottom"/>
+        <Button DockPanel.Dock="Left"   Background="Gainsboro" Content="Left 1" >
+            <Button.LayoutTransform>
+                <RotateTransform Angle="90" />
+            </Button.LayoutTransform>
+        </Button>
+        <Button DockPanel.Dock="Left"   Background="Salmon" Content="Left 2" />
+        <Button DockPanel.Dock="Right"  Background="Lime" Content="Rigth" />
+        <TextBlock Text="test text test text" DockPanel.Dock="Right" VerticalAlignment="Center">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+        <Button Background="LightGreen" Content="Center" />
+    </DockPanel>
 
-    <Grid Name="LayoutGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <!-- Default Orientation = Vertical -->
-        <StackPanel Grid.Column="0">
-            <Button Background="Green"  MinHeight="50" Content="1" />
-            <Button Background="Yellow" MinHeight="30" Content="2" />
-            <Button Background="Red"    MinHeight="50" Content="3" />
-        </StackPanel>
-        <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Background="LightSteelBlue"  MinWidth="30" Content="1" />
-            <Button Background="Wheat"           MinWidth="50" Content="2" />
-            <Button Background="SlateBlue"       MinWidth="30" Content="3" />
-        </StackPanel>
-        <!--Default FlowDirection = LeftToRight -->
-        <StackPanel Grid.Column="2" Orientation="Vertical" FlowDirection="RightToLeft">
-            <Button Background="GreenYellow"  MinHeight="50" Content="1" />
-            <Button Background="Wheat"        MinHeight="50" Content="2" />
-            <Button Background="Salmon"       MinHeight="50" Content="3" />
-        </StackPanel>
-    </Grid>
 </Window>
