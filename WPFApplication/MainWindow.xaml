@@ -5,54 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"   
         mc:Ignorable="d"
-        Title="Grid" Height="350" Width="750">
+        Title="StackPanel" Height="350" Width="600">
 
-    <Grid Name="LayoutGrid" ShowGridLines="false">
-        <Grid.RowDefinitions>
-            <!-- Автоматические размеры = Auto -->
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+
+    <Grid Name="LayoutGrid">
         <Grid.ColumnDefinitions>
-            <!-- Абсолютные размеры = пиксели - px, дюймы - in, сантиметры - cm, точки -pt -->
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-            <!-- Пропорциональные размеры 1.5* = 300 едениц-->
-            <ColumnDefinition Width="0.5*"/> <!--200 * 0.5 = 100 -->
-            <ColumnDefinition Width="1*" />  <!--300 / 1.5 = 200 * 1 = 200-->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <!-- Column - столбик Row - строка-->
-        <Button Grid.Column="2" Grid.Row="0" Content="Строка 1 Столбец 1"/>
-        <Button Grid.Column="2" Grid.Row="1" Content="Объединение трех столбцов" Grid.ColumnSpan="3"/>
-        <Button Grid.Column="3" Grid.Row="2" Content="Строка 3 Столбец 2"/>
-        <Button Grid.Column="5" Grid.Row="0" Content="Объединение четырех строк" Grid.RowSpan="5">
-            <Button.LayoutTransform>
-                <RotateTransform Angle="90"/>
-            </Button.LayoutTransform>
-        </Button>
-
-        <!-- GridSpliter - Разделитель между столбцами и строками -->
-        <GridSplitter Grid.Column="1" ShowsPreview="True" Width="3"
-                HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.RowSpan="7"/>
-
-        <GridSplitter Grid.Row="6" ShowsPreview="False" Height="3"
-                 HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.ColumnSpan="6" Background="Black"/>
-
-        <!-- UniformGrid тот же Grid, но столбцы и строки одного размера и синтаксис определения упрощен -->
-        <UniformGrid Rows="2" Columns="2" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="5">
-            <Button Content="Left Top"     />
-            <Button Content="Right Top"    />
-            <Button Content="Left Bottom"  />
-            <Button Content="Right Bottom" />
-        </UniformGrid>
+        <!-- Default Orientation = Vertical -->
+        <StackPanel Grid.Column="0">
+            <Button Background="Green"  MinHeight="50" Content="1" />
+            <Button Background="Yellow" MinHeight="30" Content="2" />
+            <Button Background="Red"    MinHeight="50" Content="3" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Background="LightSteelBlue"  MinWidth="30" Content="1" />
+            <Button Background="Wheat"           MinWidth="50" Content="2" />
+            <Button Background="SlateBlue"       MinWidth="30" Content="3" />
+        </StackPanel>
+        <!--Default FlowDirection = LeftToRight -->
+        <StackPanel Grid.Column="2" Orientation="Vertical" FlowDirection="RightToLeft">
+            <Button Background="GreenYellow"  MinHeight="50" Content="1" />
+            <Button Background="Wheat"        MinHeight="50" Content="2" />
+            <Button Background="Salmon"       MinHeight="50" Content="3" />
+        </StackPanel>
     </Grid>
 </Window>
