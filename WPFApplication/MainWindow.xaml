@@ -5,66 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"   
         mc:Ignorable="d"
-        Title="WrapPanel" Height="450" Width="400">
-    <Grid Name="LayoutGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <WrapPanel Name="HorizontalWrapPanel" Grid.Row="0">
-            <!--Default Orientation = Horizontal -->
-            
-            <!-- элементы, у которых явным образом не установлена высота, будут 
-            автоматически принимать высоту самого большого элемента из стека в этой строке.-->
-            
-            <Button Background="AliceBlue" Content="Button 1"/>
-            <Button Background="AliceBlue" Content="Button 2"/>
-            <Button Background="AliceBlue" Content="Button 3" Height="40"/>
-            <Button Background="AliceBlue" Content="Button 4" Height="20"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 6"/>
-            <!-- 2 строка-->
-            <Button Background="AliceBlue" Content="Button 7"/>
-            <Button Background="AliceBlue" Content="Button 8" Height="50"/>
-            <Button Background="AliceBlue" Content="Button 9"/>
-        </WrapPanel>
-        <WrapPanel Name="VerticalWrapPanel" Grid.Row="1" Orientation="Vertical">
+        Title="WrapPanel" Height="300" Width="500">
 
-            <!-- элементы, у которых явным образом не указана ширина, 
-            автоматически принимают ширину самого широкого элемента в столбце-->
-            
-            <Button Background="AliceBlue" Content="Button 1"/>
-            <Button Background="AliceBlue" Content="Button 2"/>
-            <Button Background="AliceBlue" Content="Button 3" Width="150"/>
-            <Button Background="AliceBlue" Content="Button 4" Width="20"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <!--2 столбец -->
-            <Button Background="AliceBlue" Content="Button 6"/>
-            <Button Background="AliceBlue" Content="Button 7"/>
-            <Button Background="AliceBlue" Content="Button 8" Width="70"/>
-            <Button Background="AliceBlue" Content="Button 9"/>
-        </WrapPanel>
-        
-        <!-- Задать элементу выделяемое пространство -->
-        <WrapPanel Name="VerticalWrapPanelSize" Grid.Row="2" ItemWidth="80" ItemHeight="30">
-            <Button Background="AliceBlue" Content="Button 1"/>
-            <Button Background="AliceBlue" Content="Button 2"/>
-            <Button Background="AliceBlue" Content="Button 3" Width="80"/>
-            <Button Background="AliceBlue" Content="Button 4" Width="20"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 5"/>
-            <Button Background="AliceBlue" Content="Button 6"/>
-            <Button Background="AliceBlue" Content="Button 7"/>
-            <!--Кнопке выделено место в ширину 80px но размер 100px-->
-            <Button Background="AliceBlue" Content="Button 8" Width="100"/>
-            <Button Background="AliceBlue" Content="Button 9"/>
-        </WrapPanel>
-    </Grid>
+    <!--Если элемент не использует свойства Canvas.Top и другие,
+    то по умолчанию свойства Canvas.Left и Canvas.Top будут равны нулю,
+    то есть он будет находиться в верхнем левом углу.-->
+    
+    <!-- Для размещения на нем необходимо указать для элементов 
+    точные координаты относительно сторон Canvas. Для установки координат
+    элементов используются свойства Canvas.Left, Canvas.Right, Canvas.Bottom, Canvas.Top. -->
+        <Canvas Background="BlanchedAlmond">
+            <Button Background="AliceBlue"      Content="Top 20 Left 40"     Canvas.Top="20"    Canvas.Left="40" />
+            <Button Background="LightSkyBlue"   Content="Top 20 Right 20"    Canvas.Top="20"    Canvas.Right="20"/>
+            <Button Background="Aquamarine"     Content="Bottom 30 Left 20"  Canvas.Bottom="30" Canvas.Left="20" />
+            <Button Background="LightCyan"      Content="Bottom 20 Right 40" Canvas.Bottom="20" Canvas.Right="40"/>
+        </Canvas>
 
 </Window>
