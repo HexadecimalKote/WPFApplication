@@ -5,27 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"   
         mc:Ignorable="d"
-        Title="DockPanel" Height="350" Width="600">
+        Title="WrapPanel" Height="450" Width="400">
+    <Grid Name="LayoutGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <WrapPanel Name="HorizontalWrapPanel" Grid.Row="0">
+            <!--Default Orientation = Horizontal -->
+            
+            <!-- элементы, у которых явным образом не установлена высота, будут 
+            автоматически принимать высоту самого большого элемента из стека в этой строке.-->
+            
+            <Button Background="AliceBlue" Content="Button 1"/>
+            <Button Background="AliceBlue" Content="Button 2"/>
+            <Button Background="AliceBlue" Content="Button 3" Height="40"/>
+            <Button Background="AliceBlue" Content="Button 4" Height="20"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 6"/>
+            <!-- 2 строка-->
+            <Button Background="AliceBlue" Content="Button 7"/>
+            <Button Background="AliceBlue" Content="Button 8" Height="50"/>
+            <Button Background="AliceBlue" Content="Button 9"/>
+        </WrapPanel>
+        <WrapPanel Name="VerticalWrapPanel" Grid.Row="1" Orientation="Vertical">
 
-    <!-- DockPanel - прижимает свое содержимое к определенной стороне внешнего контейнера -->
-    <!--LastChildFill = последний эл. заполнить все оставшееся пространство -->
-    <DockPanel LastChildFill="True">
-        <!-- Default DockPanel.Dock = Left -->
-        <Button DockPanel.Dock="Top"    Background="Cyan" Content="Top"/>
-        <Button DockPanel.Dock="Bottom"  Background="DarkGoldenrod" Content="Bottom"/>
-        <Button DockPanel.Dock="Left"   Background="Gainsboro" Content="Left 1" >
-            <Button.LayoutTransform>
-                <RotateTransform Angle="90" />
-            </Button.LayoutTransform>
-        </Button>
-        <Button DockPanel.Dock="Left"   Background="Salmon" Content="Left 2" />
-        <Button DockPanel.Dock="Right"  Background="Lime" Content="Rigth" />
-        <TextBlock Text="test text test text" DockPanel.Dock="Right" VerticalAlignment="Center">
-            <TextBlock.LayoutTransform>
-                <RotateTransform Angle="90"/>
-            </TextBlock.LayoutTransform>
-        </TextBlock>
-        <Button Background="LightGreen" Content="Center" />
-    </DockPanel>
+            <!-- элементы, у которых явным образом не указана ширина, 
+            автоматически принимают ширину самого широкого элемента в столбце-->
+            
+            <Button Background="AliceBlue" Content="Button 1"/>
+            <Button Background="AliceBlue" Content="Button 2"/>
+            <Button Background="AliceBlue" Content="Button 3" Width="150"/>
+            <Button Background="AliceBlue" Content="Button 4" Width="20"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <!--2 столбец -->
+            <Button Background="AliceBlue" Content="Button 6"/>
+            <Button Background="AliceBlue" Content="Button 7"/>
+            <Button Background="AliceBlue" Content="Button 8" Width="70"/>
+            <Button Background="AliceBlue" Content="Button 9"/>
+        </WrapPanel>
+        
+        <!-- Задать элементу выделяемое пространство -->
+        <WrapPanel Name="VerticalWrapPanelSize" Grid.Row="2" ItemWidth="80" ItemHeight="30">
+            <Button Background="AliceBlue" Content="Button 1"/>
+            <Button Background="AliceBlue" Content="Button 2"/>
+            <Button Background="AliceBlue" Content="Button 3" Width="80"/>
+            <Button Background="AliceBlue" Content="Button 4" Width="20"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 5"/>
+            <Button Background="AliceBlue" Content="Button 6"/>
+            <Button Background="AliceBlue" Content="Button 7"/>
+            <!--Кнопке выделено место в ширину 80px но размер 100px-->
+            <Button Background="AliceBlue" Content="Button 8" Width="100"/>
+            <Button Background="AliceBlue" Content="Button 9"/>
+        </WrapPanel>
+    </Grid>
 
 </Window>
