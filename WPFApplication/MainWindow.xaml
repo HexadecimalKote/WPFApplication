@@ -5,40 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
         mc:Ignorable="d"
-        Title="Content Control" Height="650" Width="800">
+        Title="Buttons" Height="350" Width="600">
 
     <Grid Name="LayoutGrid">
-        <StackPanel Name="FirstStackPanel">
-            <!--при визуализации будет вызываться метод ToString():-->
-            <Button Content="Hello World 1!!!"/>
-            <Button>
-                <Button.Content>Hello World 2!!!</Button.Content>
-            </Button>
-            <Button>Hello World 3!!!</Button>
-            <Button Name="Button4"/>
-            <!--при визуализации будет вызываться метод OnRender():-->
-            <Button Name="Button5">
-                <Button Content="Hello World 5"/>
-            </Button>
-            <Button Name="button6">
-                <StackPanel>
-                    <TextBlock Text="Набор кнопкок XAML" />
-                    <Button Background="Red"    Height="20" Content="Red" />
-                    <Button Background="Yellow" Height="20" Content="Yellow" />
-                    <Button Background="Green"  Height="20" Content="Green" />
-                </StackPanel>
-            </Button>
-            <!--Позиционирование контента -->
-            <Button Margin="5" HorizontalContentAlignment="Left"   VerticalContentAlignment="Top"    Content="Left - Top"       Height="30" Width="500" />
-            <Button Margin="5" HorizontalContentAlignment="Right"  VerticalContentAlignment="Center" Content="Right - Center"   Height="30" Width="500" />
-            <Button Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Content="Center - Bottom"  Height="30" Width="500" />
-            <!--Padding -->
-            <Button Padding="50 30 0 40" HorizontalContentAlignment="Left">
-                Hello World8!!!
-            </Button>
-            <Button Padding="60 20 0 30" HorizontalContentAlignment="Center">
-                Hello World9!!!
-            </Button>
+        <StackPanel>
+            <Button Name="button1" Width="100" Background="Aqua" Height="30" Content="Click me XAML" Click="Button1_Click"/>
+            <Button Name="button2" Width="100" Background="Bisque" Height="30" Content="Click me C#" />
+            <Button Name="acceptButton" Content="ОК" IsDefault="True" Click="AcceptButton_Click" />
+            <Button Name="escButton" Content="Выход" IsCancel="True" Click="EscButton_Click" />
+            <!-- может служить основой для создания ползунка в элементах ScrollBar и ScrollViewer-->
+            <RepeatButton Name="myRepeatButton" Delay="1000" Interval="1000" Width="100" Height="30" Content="RepeatButton" Click="AddTextInTextBox"/>
+            <TextBox Name="RepeatedText" Text="Hello"></TextBox>
+
+
+            <ToggleButton Name="toggleButton"     Content="Toggle" Checked="HandleCheck" Unchecked="HandleUnchecked" Indeterminate="HandleIntermediate" Margin = "0 20 0 20" Width = "100" HorizontalAlignment = "Center"/>
+            <TextBlock    Name = "toggleTextBlock" Width = "300" HorizontalAlignment = "Center" Height = "50" FontSize = "24"/>
+
         </StackPanel>
     </Grid>
 </Window>

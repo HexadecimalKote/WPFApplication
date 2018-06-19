@@ -23,21 +23,47 @@ namespace WPFApplication
         public MainWindow()
         {
             InitializeComponent();
-            double bText = 4.05;
-            Button4.Content = bText;
-            CreateButton7();
+            button2.Click += Button2_Click;
         }
 
-        private void CreateButton7()
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            Button button7 = new Button();
-            StackPanel stackPanel = new StackPanel();
-            stackPanel.Children.Add(new TextBlock { Text = "Набор кнопок C#" });
-            stackPanel.Children.Add(new Button { Content = "Blue", Height = 20, Background = new SolidColorBrush(Colors.Blue) });
-            stackPanel.Children.Add(new Button { Content = "Yellow", Height = 20, Background = new SolidColorBrush(Colors.Yellow) });
-            stackPanel.Children.Add(new Button { Content = "Magenta", Height = 20, Background = new SolidColorBrush(Colors.Magenta) });
-            button7.Content = stackPanel;
-            FirstStackPanel.Children.Add(button7);
+            MessageBox.Show("Кнопка нажата обработчик добавлен в C#");
+        }
+
+        private void Button1_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Кнопка нажата обработчик добавлен в XAML");
+        }
+
+        private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Действие выполнено");
+        }
+
+        private void EscButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // закрытие окна
+        }
+
+        private void AddTextInTextBox(object sender, RoutedEventArgs e)
+        {
+            RepeatedText.Text += "World";
+        }
+
+        private void HandleCheck(object sender, RoutedEventArgs e)
+        {
+            toggleTextBlock.Text = "Button is Checked";
+        }
+
+        private void HandleUnchecked(object sender, RoutedEventArgs e)
+        {
+            toggleTextBlock.Text = "Button is unchecked.";
+        }
+
+        private void HandleIntermediate(object sender, RoutedEventArgs e)
+        {
+            toggleTextBlock.Text = "Button is Intermediate.";
         }
     }
 }
