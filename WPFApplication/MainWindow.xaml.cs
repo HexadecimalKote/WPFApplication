@@ -23,47 +23,50 @@ namespace WPFApplication
         public MainWindow()
         {
             InitializeComponent();
-            button2.Click += Button2_Click;
+            CreateCheckBox();
+            CreateRadioButton();
         }
 
-        private void Button2_Click(object sender, RoutedEventArgs e)
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Кнопка нажата обработчик добавлен в C#");
+            MessageBox.Show(((CheckBox)sender).Content.ToString() + " отмечен");
         }
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Кнопка нажата обработчик добавлен в XAML");
+            MessageBox.Show(((CheckBox)sender).Content.ToString() + " не отмечен");
         }
 
-        private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        private void CheckBox_Indeterminate(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Действие выполнено");
+            MessageBox.Show(((CheckBox)sender).Content.ToString() + " в неопределенном состоянии");
         }
 
-        private void EscButton_Click(object sender, RoutedEventArgs e)
+        private void CreateCheckBox()
         {
-            this.Close(); // закрытие окна
+            CheckBox checkBox4 = new CheckBox { Content = "Флажок С#", Height = 30, IsChecked = false, Margin = new Thickness(20, 0, 0, 0), IsThreeState=true };
+            checkBox4.Checked += CheckBox_Checked;
+            checkBox4.Unchecked += CheckBox_Unchecked;
+            checkBox4.Indeterminate += CheckBox_Indeterminate;
+            stackPanel1.Children.Add(checkBox4);
         }
 
-        private void AddTextInTextBox(object sender, RoutedEventArgs e)
+        private void CreateRadioButton()
         {
-            RepeatedText.Text += "World";
+            RadioButton radioButton7 = new RadioButton { Content = "Console", Height = 20, Margin = new Thickness(20, 0, 0, 0), GroupName = "Technologies" };
+            radioButton7.Checked        += RadioButton_Checked;
+            radioButton7.Unchecked      += RadioButton_Unchecked;
+            stackPanel2.Children.Add(radioButton7);
         }
 
-        private void HandleCheck(object sender, RoutedEventArgs e)
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            toggleTextBlock.Text = "Button is Checked";
+            MessageBox.Show(((RadioButton)sender).Content.ToString() + " отмечен");
         }
 
-        private void HandleUnchecked(object sender, RoutedEventArgs e)
+        private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            toggleTextBlock.Text = "Button is unchecked.";
-        }
-
-        private void HandleIntermediate(object sender, RoutedEventArgs e)
-        {
-            toggleTextBlock.Text = "Button is Intermediate.";
+            MessageBox.Show(((RadioButton)sender).Content.ToString() + " не отмечен");
         }
     }
 }

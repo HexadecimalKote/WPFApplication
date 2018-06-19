@@ -5,22 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
         mc:Ignorable="d"
-        Title="Buttons" Height="350" Width="600">
+        Title="Checkbox and RadioButton" Height="350" Width="600">
 
-    <Grid Name="LayoutGrid">
-        <StackPanel>
-            <Button Name="button1" Width="100" Background="Aqua" Height="30" Content="Click me XAML" Click="Button1_Click"/>
-            <Button Name="button2" Width="100" Background="Bisque" Height="30" Content="Click me C#" />
-            <Button Name="acceptButton" Content="ОК" IsDefault="True" Click="AcceptButton_Click" />
-            <Button Name="escButton" Content="Выход" IsCancel="True" Click="EscButton_Click" />
-            <!-- может служить основой для создания ползунка в элементах ScrollBar и ScrollViewer-->
-            <RepeatButton Name="myRepeatButton" Delay="1000" Interval="1000" Width="100" Height="30" Content="RepeatButton" Click="AddTextInTextBox"/>
-            <TextBox Name="RepeatedText" Text="Hello"></TextBox>
-
-
-            <ToggleButton Name="toggleButton"     Content="Toggle" Checked="HandleCheck" Unchecked="HandleUnchecked" Indeterminate="HandleIntermediate" Margin = "0 20 0 20" Width = "100" HorizontalAlignment = "Center"/>
-            <TextBlock    Name = "toggleTextBlock" Width = "300" HorizontalAlignment = "Center" Height = "50" FontSize = "24"/>
-
+    <UniformGrid Rows="1" Columns="2">
+        <StackPanel Name="stackPanel1">
+            <CheckBox Name="checkBox1" IsThreeState="True" IsChecked="False"    Height="30" Content="Неотмеченно" VerticalContentAlignment="Center"  Margin="20 0 0 0"/>
+            <CheckBox Name="checkBox2" IsThreeState="True" IsChecked="True"     Height="30" Content="Отмеченно" VerticalContentAlignment="Center"    Margin="20 0 0 0"/>
+            <CheckBox Name="checkBox3" IsThreeState="True" IsChecked="{x:Null}" Height="30" Content="Неопределено" VerticalContentAlignment="Center" Margin="20 0 0 0"/>
+            <CheckBox Name="checkBox4" IsThreeState="True" IsChecked="False"    Height="30" Content="Флажок" VerticalContentAlignment="Center"       Margin="20 0 0 0" 
+                      Unchecked="CheckBox_Unchecked"
+                      Indeterminate="CheckBox_Indeterminate"
+                      Checked="CheckBox_Checked">
+            </CheckBox>
         </StackPanel>
-    </Grid>
+        <StackPanel Name="stackPanel2">
+            <RadioButton GroupName="Languages"    Height="20" Margin="20 10 0 0" Content="C#" IsChecked="True"/>
+            <RadioButton GroupName="Languages"    Height="20" Margin="20 0 0 0"  Content="VB.NET" />
+            <RadioButton GroupName="Languages"    Height="20" Margin="20 0 0 0"  Content="C++" />
+            <RadioButton GroupName="Technologies" Height="20" Margin="20 0 0 0"  Content="WPF" />
+            <RadioButton GroupName="Technologies" Height="20" Margin="20 0 0 0"  Content="WinForms" IsChecked="{x:Null}"/>
+            <RadioButton GroupName="Technologies" Height="20" Margin="20 0 0 0"  Content="ASP.NET" />
+        </StackPanel>
+
+    </UniformGrid>
 </Window>
