@@ -4,30 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
-        
-        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Content Control" Height="650" Width="800">
 
-    <Window.Resources>
-        <col:ArrayList x:Key="days">
-            <sys:String>Понедельник</sys:String>
-            <sys:String>Вторник</sys:String>
-            <sys:String>Среда</sys:String>
-            <sys:String>Четверг</sys:String>
-            <sys:String>Пятница</sys:String>
-            <sys:String>Суббота</sys:String>
-            <sys:String>Воскресенье</sys:String>
-        </col:ArrayList>
-    </Window.Resources>
-    
     <Grid Name="LayoutGrid">
-        <Button x:Name="phoneButton" Width="250" Height="40" HorizontalAlignment="Center">
-            <Button.Content>
-                <local:Phone Name="Lumia 950" Price="700" />
-            </Button.Content>
-        </Button>
+        <StackPanel Name="FirstStackPanel">
+            <!--при визуализации будет вызываться метод ToString():-->
+            <Button Content="Hello World 1!!!"/>
+            <Button>
+                <Button.Content>Hello World 2!!!</Button.Content>
+            </Button>
+            <Button>Hello World 3!!!</Button>
+            <Button Name="Button4"/>
+            <!--при визуализации будет вызываться метод OnRender():-->
+            <Button Name="Button5">
+                <Button Content="Hello World 5"/>
+            </Button>
+            <Button Name="button6">
+                <StackPanel>
+                    <TextBlock Text="Набор кнопкок XAML" />
+                    <Button Background="Red"    Height="20" Content="Red" />
+                    <Button Background="Yellow" Height="20" Content="Yellow" />
+                    <Button Background="Green"  Height="20" Content="Green" />
+                </StackPanel>
+            </Button>
+            <!--Позиционирование контента -->
+            <Button Margin="5" HorizontalContentAlignment="Left"   VerticalContentAlignment="Top"    Content="Left - Top"       Height="30" Width="500" />
+            <Button Margin="5" HorizontalContentAlignment="Right"  VerticalContentAlignment="Center" Content="Right - Center"   Height="30" Width="500" />
+            <Button Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Content="Center - Bottom"  Height="30" Width="500" />
+            <!--Padding -->
+            <Button Padding="50 30 0 40" HorizontalContentAlignment="Left">
+                Hello World8!!!
+            </Button>
+            <Button Padding="60 20 0 30" HorizontalContentAlignment="Center">
+                Hello World9!!!
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
