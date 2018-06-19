@@ -5,27 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
         mc:Ignorable="d"
-        Title="Checkbox and RadioButton" Height="350" Width="600">
+        Title="ToolTip and Popup" Height="500" Width="800">
 
     <UniformGrid Rows="1" Columns="2">
-        <StackPanel Name="stackPanel1">
-            <CheckBox Name="checkBox1" IsThreeState="True" IsChecked="False"    Height="30" Content="Неотмеченно" VerticalContentAlignment="Center"  Margin="20 0 0 0"/>
-            <CheckBox Name="checkBox2" IsThreeState="True" IsChecked="True"     Height="30" Content="Отмеченно" VerticalContentAlignment="Center"    Margin="20 0 0 0"/>
-            <CheckBox Name="checkBox3" IsThreeState="True" IsChecked="{x:Null}" Height="30" Content="Неопределено" VerticalContentAlignment="Center" Margin="20 0 0 0"/>
-            <CheckBox Name="checkBox4" IsThreeState="True" IsChecked="False"    Height="30" Content="Флажок" VerticalContentAlignment="Center"       Margin="20 0 0 0" 
-                      Unchecked="CheckBox_Unchecked"
-                      Indeterminate="CheckBox_Indeterminate"
-                      Checked="CheckBox_Checked">
-            </CheckBox>
-        </StackPanel>
-        <StackPanel Name="stackPanel2">
-            <RadioButton GroupName="Languages"    Height="20" Margin="20 10 0 0" Content="C#" IsChecked="True"/>
-            <RadioButton GroupName="Languages"    Height="20" Margin="20 0 0 0"  Content="VB.NET" />
-            <RadioButton GroupName="Languages"    Height="20" Margin="20 0 0 0"  Content="C++" />
-            <RadioButton GroupName="Technologies" Height="20" Margin="20 0 0 0"  Content="WPF" />
-            <RadioButton GroupName="Technologies" Height="20" Margin="20 0 0 0"  Content="WinForms" IsChecked="{x:Null}"/>
-            <RadioButton GroupName="Technologies" Height="20" Margin="20 0 0 0"  Content="ASP.NET" />
+        <StackPanel>
+
+            <Button Content="ToolTip button 1" ToolTip="Всплывающая подсказка 1" Height="40" Width="100"/>
+            <Button Content="ToolTip button 2" Height="40" Width="100">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Всплывающая подсказка 2
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+
+            <TextBlock Text="ToolTip TextBlock 1" ToolTip="Всплывающая подсказка 3" HorizontalAlignment="Center" />
+            <TextBlock Text="ToolTip TextBlock 2" HorizontalAlignment="Center">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        Всплывающая подсказка 4
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+
+            <Button Name="buttonToolTip" Content="ToolTip button C#" Height="40" Width="100"/>
+
+            <StackPanel Margin="20 20 0 0">
+                <RadioButton Height="20" Content="Кошки">
+                    <RadioButton.ToolTip>
+                        <StackPanel>
+                            <TextBlock>Кошки</TextBlock>
+                            <Image Source="Resources/cats.jpg"/>
+                        </StackPanel>
+                    </RadioButton.ToolTip>
+                </RadioButton>
+                <RadioButton Height="20">Собаки</RadioButton>
+                <RadioButton Height="20">Другие фото</RadioButton>
+            </StackPanel>
+
+            <StackPanel Margin="20 20 0 0">
+                
+                <!-- Свойства ToolTip 
+                
+                    HasDropShadow: определяет, будет ли всплывающая подсказка отбрасывать тень.
+                
+                    Placement: определяет, как будет позиционироваться всплывающая подсказка
+                    на окне приложения. По умолчанию ее верхний левый угол позиционируется на указатель мыши.
+                
+                    HorizontalOffset/ VerticalOffset: определяет смещение относительно начального местоположения. 
+                
+                    PlacementTarget: определяет позицию всплывающей подсказки относительно другого элемента управления.
+                -->
+                <RadioButton GroupName="Phones" Content="iPhone 6S" Height="20">
+                    <!--ToolTipService почему-то не работает для вложенных элементов ToolTip-->
+                    <RadioButton.ToolTip>
+                        <ToolTip Background="#60AA4030" Foreground="White" HasDropShadow="True"
+                                 Placement="Relative" HorizontalOffset="85" VerticalOffset="15"
+                                 ToolTipService.InitialShowDelay="100"
+                                 ToolTipService.ShowDuration="500"
+                                 ToolTipService.HasDropShadow="True">
+                            <StackPanel>
+                                <TextBlock>Цена:</TextBlock>
+                                <TextBlock>Связной: 54990 рублей</TextBlock>
+                                <TextBlock>Ситилинк: 539990 рублей</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </RadioButton.ToolTip>
+                </RadioButton>
+
+                <!-- Свойства ToolTipService
+                
+                InitialShowDelay: задает задержку перед отображением всплывающей подсказки
+                
+                ShowDuration:     устанавливает время отображения всплывающей подсказки
+                
+                BetweenShowDelay: устанавливает время, в течение которого пользователь сможет
+                перейти к другому элементу с подсказкой, и для этого элемента не будет работать 
+                свойство InitialShowDelay (если оно указано)
+                
+                ToolTip: устанавливает содержимое всплывающей подсказки
+                
+                HasDropShadow: определяет, будет ли подсказка отбрасывать тень
+                
+                ShowOnDisabled: устанавливает поведение всплывающей подсказки 
+                для недоступного элемента (со значением IsEnabled="True"). 
+                Если это свойство равно true, то подсказка отображается для недоступных 
+                элементов. По умолчанию равно false.
+                
+                Placement / HorizontalOffset / 
+                VerticalOffset / PlacementTarget: те же свойства, что и у элемента ToolTip, которые устанавливают 
+                положение всплывающей подсказки-->
+                <RadioButton GroupName="Phones" ToolTipService.Placement="Mouse" Height="20"
+                             ToolTip="Цена: 29990 рублей" Content="Nexus 5X"
+                             ToolTipService.InitialShowDelay ="3000"/>
+
+                <RadioButton GroupName="Phones" ToolTip="Цена: 39990 рублей" Content="Lumia 950" Height="20" IsEnabled="False" ToolTipService.ShowOnDisabled ="True"/>
+            </StackPanel>
+
         </StackPanel>
 
+        <StackPanel>
+            <Button Content="Popup" Width="80" MouseEnter="Button_MouseEnter" HorizontalAlignment="Left"/>
+            <Popup Name="popup" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True">
+                <TextBlock TextWrapping="Wrap" Width="180" Background="LightPink" Opacity="0.5">
+                    Чтобы узнать больше, посетите сайт metanit.com
+                </TextBlock>
+            </Popup>
+        </StackPanel>
     </UniformGrid>
 </Window>
