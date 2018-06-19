@@ -5,20 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"   
         mc:Ignorable="d"
-        Title="WrapPanel" Height="300" Width="500">
+        Title="Positioning of elements" Height="400" Width="600">
 
-    <!--Если элемент не использует свойства Canvas.Top и другие,
-    то по умолчанию свойства Canvas.Left и Canvas.Top будут равны нулю,
-    то есть он будет находиться в верхнем левом углу.-->
-    
-    <!-- Для размещения на нем необходимо указать для элементов 
-    точные координаты относительно сторон Canvas. Для установки координат
-    элементов используются свойства Canvas.Left, Canvas.Right, Canvas.Bottom, Canvas.Top. -->
-        <Canvas Background="BlanchedAlmond">
-            <Button Background="AliceBlue"      Content="Top 20 Left 40"     Canvas.Top="20"    Canvas.Left="40" />
-            <Button Background="LightSkyBlue"   Content="Top 20 Right 20"    Canvas.Top="20"    Canvas.Right="20"/>
-            <Button Background="Aquamarine"     Content="Bottom 30 Left 20"  Canvas.Bottom="30" Canvas.Left="20" />
-            <Button Background="LightCyan"      Content="Bottom 20 Right 40" Canvas.Bottom="20" Canvas.Right="40"/>
-        </Canvas>
+    <Grid Name="LayoutGrid" ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0">
+            <Button Content="Top" Width="50" Height="20" VerticalAlignment="Top"/>
+            <Button Content="Center" Width="50" Height="20" VerticalAlignment="Center"/>
+            <Button Content="Button" Width="50" Height="20" VerticalAlignment="Bottom"/>
+            <Button Content="Stetch" VerticalAlignment="Stretch" Width="50" Margin="200 10 10 10"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Button Content="Left" Width="60" Height="30" HorizontalAlignment="Left" />
+            <Button Content="Center" Width="60" Height="30" HorizontalAlignment="Center" />
+            <Button Content="Right" Width="60" Height="30" HorizontalAlignment="Right" />
+            <Button Content="Stretch" Height="30" HorizontalAlignment="Stretch" Margin="10 -80 10 0" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Button Content="15 10 0 0" Width="60" Height="30" Margin ="15 10 0 0"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Content="0 0 20 10" Width="60" Height="30" Margin ="0 0 20 10"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <!-- По умолчанию те элементы, которые определены позже, 
+        перекрывают те элементы, которые определены ранее.-->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Button Width="60" Height="30" Panel.ZIndex="2" Margin="10 10 0 0">Один</Button>
+            <Button Width="60" Height="30" Panel.ZIndex="1" Margin="45 45 0 0">Два</Button>
+            <Button Width="60" Height="30" Panel.ZIndex="0" Margin="75 75 0 0">Три</Button>
+        </Grid>
+    </Grid>
+
 
 </Window>
