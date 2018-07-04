@@ -23,22 +23,34 @@ namespace WPFApplication
         public MainWindow()
         {
             InitializeComponent();
-            CreateToolTipForButton();
+            CreateExpander();
         }
 
-        private void CreateToolTipForButton()
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
         {
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = "Header", FontSize = 20 });
-            toolTipPanel.Children.Add(new TextBlock { Text = "Some Text" });
-            toolTip.Content = toolTipPanel;
-            buttonToolTip.ToolTip = toolTip;
+            ((Expander)sender).Content = new Button() { Width = 80, Height = 30, Content = "Привет", Margin = new Thickness(10) };
         }
 
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
         {
-            popup.IsOpen = true;
+            MessageBox.Show("Экспандер свернут");
+        }
+
+        private void CreateExpander()
+        {
+            StackPanel expanderPanel = new StackPanel();
+            expanderPanel.Children.Add(new CheckBox { Content = "WinForms" });
+            expanderPanel.Children.Add(new CheckBox { Content = "WPF" });
+            expanderPanel.Children.Add(new CheckBox { Content = "ASP.NET" });
+
+            Expander expander = new Expander
+            {
+                Header = "Expander create in C#",
+                Content = expanderPanel,
+                Margin = new Thickness(10, 0, 0, 0)
+            };
+
+            FourStackPanel.Children.Add(expander);
         }
     }
 }

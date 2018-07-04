@@ -5,112 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
         mc:Ignorable="d"
-        Title="ToolTip and Popup" Height="500" Width="800">
+        Title="GroupBox and Expander" Height="500" Width="800">
 
-    <UniformGrid Rows="1" Columns="2">
-        <StackPanel>
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-            <Button Content="ToolTip button 1" ToolTip="Всплывающая подсказка 1" Height="40" Width="100"/>
-            <Button Content="ToolTip button 2" Height="40" Width="100">
-                <Button.ToolTip>
-                    <ToolTip>
-                        Всплывающая подсказка 2
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-
-            <TextBlock Text="ToolTip TextBlock 1" ToolTip="Всплывающая подсказка 3" HorizontalAlignment="Center" />
-            <TextBlock Text="ToolTip TextBlock 2" HorizontalAlignment="Center">
-                <TextBlock.ToolTip>
-                    <ToolTip>
-                        Всплывающая подсказка 4
-                    </ToolTip>
-                </TextBlock.ToolTip>
-            </TextBlock>
-
-            <Button Name="buttonToolTip" Content="ToolTip button C#" Height="40" Width="100"/>
-
-            <StackPanel Margin="20 20 0 0">
-                <RadioButton Height="20" Content="Кошки">
-                    <RadioButton.ToolTip>
-                        <StackPanel>
-                            <TextBlock>Кошки</TextBlock>
-                            <Image Source="Resources/cats.jpg"/>
-                        </StackPanel>
-                    </RadioButton.ToolTip>
-                </RadioButton>
-                <RadioButton Height="20">Собаки</RadioButton>
-                <RadioButton Height="20">Другие фото</RadioButton>
+        <GroupBox Header="Выбрать блюдо" Padding="5">
+            <StackPanel>
+                <RadioButton IsChecked="True" Margin="3">Салат Оливье</RadioButton>
+                <RadioButton Margin="3">Котлеты по-киевски</RadioButton>
+                <RadioButton Margin="3">Селедка под шубой</RadioButton>
+                <Button Width="80" Margin="3">Заказать</Button>
             </StackPanel>
+        </GroupBox>
 
-            <StackPanel Margin="20 20 0 0">
-                
-                <!-- Свойства ToolTip 
-                
-                    HasDropShadow: определяет, будет ли всплывающая подсказка отбрасывать тень.
-                
-                    Placement: определяет, как будет позиционироваться всплывающая подсказка
-                    на окне приложения. По умолчанию ее верхний левый угол позиционируется на указатель мыши.
-                
-                    HorizontalOffset/ VerticalOffset: определяет смещение относительно начального местоположения. 
-                
-                    PlacementTarget: определяет позицию всплывающей подсказки относительно другого элемента управления.
-                -->
-                <RadioButton GroupName="Phones" Content="iPhone 6S" Height="20">
-                    <!--ToolTipService почему-то не работает для вложенных элементов ToolTip-->
-                    <RadioButton.ToolTip>
-                        <ToolTip Background="#60AA4030" Foreground="White" HasDropShadow="True"
-                                 Placement="Relative" HorizontalOffset="85" VerticalOffset="15"
-                                 ToolTipService.InitialShowDelay="100"
-                                 ToolTipService.ShowDuration="500"
-                                 ToolTipService.HasDropShadow="True">
-                            <StackPanel>
-                                <TextBlock>Цена:</TextBlock>
-                                <TextBlock>Связной: 54990 рублей</TextBlock>
-                                <TextBlock>Ситилинк: 539990 рублей</TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </RadioButton.ToolTip>
-                </RadioButton>
-
-                <!-- Свойства ToolTipService
-                
-                InitialShowDelay: задает задержку перед отображением всплывающей подсказки
-                
-                ShowDuration:     устанавливает время отображения всплывающей подсказки
-                
-                BetweenShowDelay: устанавливает время, в течение которого пользователь сможет
-                перейти к другому элементу с подсказкой, и для этого элемента не будет работать 
-                свойство InitialShowDelay (если оно указано)
-                
-                ToolTip: устанавливает содержимое всплывающей подсказки
-                
-                HasDropShadow: определяет, будет ли подсказка отбрасывать тень
-                
-                ShowOnDisabled: устанавливает поведение всплывающей подсказки 
-                для недоступного элемента (со значением IsEnabled="True"). 
-                Если это свойство равно true, то подсказка отображается для недоступных 
-                элементов. По умолчанию равно false.
-                
-                Placement / HorizontalOffset / 
-                VerticalOffset / PlacementTarget: те же свойства, что и у элемента ToolTip, которые устанавливают 
-                положение всплывающей подсказки-->
-                <RadioButton GroupName="Phones" ToolTipService.Placement="Mouse" Height="20"
-                             ToolTip="Цена: 29990 рублей" Content="Nexus 5X"
-                             ToolTipService.InitialShowDelay ="3000"/>
-
-                <RadioButton GroupName="Phones" ToolTip="Цена: 39990 рублей" Content="Lumia 950" Height="20" IsEnabled="False" ToolTipService.ShowOnDisabled ="True"/>
+        <GroupBox Grid.Row="1" Padding="5">
+            <GroupBox.Header>
+                <Button Background="Goldenrod" Margin="3">Выбрать блюдо</Button>
+            </GroupBox.Header>
+            <StackPanel>
+                <RadioButton IsChecked="True" Margin="3">Салат Оливье</RadioButton>
+                <RadioButton Margin="3">Котлеты по-киевски</RadioButton>
+                <RadioButton Margin="3">Селедка под шубой</RadioButton>
             </StackPanel>
+        </GroupBox>
 
+        <StackPanel Margin="10 0 0 0" Grid.Row="0" Grid.Column="1">
+            <Expander Header="Некрасов">
+                <TextBlock>Однажды в студеную зимнюю пору...</TextBlock>
+            </Expander>
+            <Expander Header="Пушкин">
+                <TextBlock>Онегин был, по мнению многих, ученый малый, но ...</TextBlock>
+            </Expander>
+            <Expander Header="Обработчик события" Expanded="Expander_Expanded" Collapsed="Expander_Collapsed">
+                <TextBlock>Some text...</TextBlock>
+            </Expander>
+            <Expander Header="Опрос" IsExpanded="True">
+                <StackPanel>
+                    <TextBlock>Отметьте, что вам больше нравится</TextBlock>
+                    <CheckBox>WinForms</CheckBox>
+                    <CheckBox>WPF</CheckBox>
+                    <CheckBox>ASP.NET</CheckBox>
+                </StackPanel>
+            </Expander>
         </StackPanel>
 
-        <StackPanel>
-            <Button Content="Popup" Width="80" MouseEnter="Button_MouseEnter" HorizontalAlignment="Left"/>
-            <Popup Name="popup" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True">
-                <TextBlock TextWrapping="Wrap" Width="180" Background="LightPink" Opacity="0.5">
-                    Чтобы узнать больше, посетите сайт metanit.com
-                </TextBlock>
-            </Popup>
+        <StackPanel Name="FourStackPanel" Grid.Row="1" Grid.Column="1">
+            <Expander  ExpandDirection="Left">
+                <Expander.Header>
+                    <Button Background="Lavender">Опрос</Button>
+                </Expander.Header>
+                <StackPanel>
+                    <TextBlock>Выберите технологию</TextBlock>
+                    <CheckBox>WinForms</CheckBox>
+                    <CheckBox>WPF</CheckBox>
+                    <CheckBox>ASP.NET</CheckBox>
+                </StackPanel>
+            </Expander>
         </StackPanel>
-    </UniformGrid>
+    </Grid>
 </Window>
