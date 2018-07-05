@@ -23,34 +23,22 @@ namespace WPFApplication
         public MainWindow()
         {
             InitializeComponent();
-            CreateExpander();
         }
 
-        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        /*
+             LineUp(), LineDown(), LineRight(), LineLeft(): прокрутка соответственно вверх, вниз, вправо, влево.
+             ScrollToEnd(), ScrollToHome(): прокрутка в конец окна и в начало.
+             ScrollToRightEnd(), ScrollToLeftEnd(): прокрутка в правый и левый конец окна.
+        */
+        private void Up_Click(object sender, RoutedEventArgs e)
         {
-            ((Expander)sender).Content = new Button() { Width = 80, Height = 30, Content = "Привет", Margin = new Thickness(10) };
+            scroll.LineUp();
         }
 
-        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        private void Down_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Экспандер свернут");
+            scroll.LineDown();
         }
 
-        private void CreateExpander()
-        {
-            StackPanel expanderPanel = new StackPanel();
-            expanderPanel.Children.Add(new CheckBox { Content = "WinForms" });
-            expanderPanel.Children.Add(new CheckBox { Content = "WPF" });
-            expanderPanel.Children.Add(new CheckBox { Content = "ASP.NET" });
-
-            Expander expander = new Expander
-            {
-                Header = "Expander create in C#",
-                Content = expanderPanel,
-                Margin = new Thickness(10, 0, 0, 0)
-            };
-
-            FourStackPanel.Children.Add(expander);
-        }
     }
 }
