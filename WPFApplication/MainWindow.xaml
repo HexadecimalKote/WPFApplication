@@ -5,86 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
         mc:Ignorable="d"
-        Title="ScrollViewer" Height="350" Width="800">
+        Title="Text controls" Height="350" Width="800">
 
 
     <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="0" Height="200" VerticalAlignment="Top">
-            <StackPanel>
-                <Button MinHeight="60" Background="Red"/>
-                <Button MinHeight="60" Background="Orange"/>
-                <Button MinHeight="60" Background="Yellow"/>
-                <Button MinHeight="60" Background="Green"/>
-                <Button MinHeight="60" Background="Blue"/>
-            </StackPanel>
-        </ScrollViewer>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <!--TextBlock выводит статический текст -->
+            <!--LineHeight    - Высота строки
+                TextWrapping  - Настройка переноса текста по умолчанию NoWrap
+                TextAlignment - Выравнивание текста
+                TextDecorations - декорация текста -->
+            <TextBlock FontSize="20" Foreground="Gray">Some text...</TextBlock>
+            <TextBlock FontSize="15" Foreground ="DarkGreen" Margin="15 0 0 0">Some text...</TextBlock>
+            <TextBlock TextWrapping="Wrap">
+                <Run FontSize="20" Foreground="Red" FontWeight="Bold">O</Run>
+                <Run FontSize="16" Foreground="LightSeaGreen">негин был, один из немногих................/////////........// вап вап</Run>
+            </TextBlock>
+            <TextBlock Margin="0 20 0 0">
+                Некий текст..........
+                <LineBreak/>
+                <Run TextDecorations="Underline" Foreground="DarkGreen">
+                    Перевод на новую строку
+                </Run>
+            </TextBlock>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <!--TextChanged="TextBox_TextChanged" событие на изменение содержимого -->
+            <!--AcceptsReturn="True" - перенос строки по нажатию enter -->
+            <!--AcceptsTab="True" - разрешить использоват табуляцию -->
+            <!--MaxLength="250" - Максимальное количество введенных символов -->
+            <!--IsReadOnly="True" - сделать недоступным для ввода -->
+            <!--SpellCheck.IsEnabled="True" - включить проверку орфографии -->
+            <!--Language="ru-ru" - язык ввода русский -->
 
-        <StackPanel Grid.Column="1">
+            <TextBox Padding="10"
+                     Height="80"
+                     VerticalScrollBarVisibility="Auto"
+                     AcceptsReturn="True"
+                     AcceptsTab="True" 
+                     TextWrapping="Wrap"
+                     SpellCheck.IsEnabled="True"
+                     Language="ru-ru">Привет как дила? Проверка орфографии.</TextBox>
+
             <StackPanel>
-                <!--CanContentScroll - прокрутка к следующему элементу -->
-                <ScrollViewer Name="scroll" CanContentScroll="True" Height="150">
-                    <GroupBox Header="Смартфон 2015" Padding="5">
-                        <StackPanel>
-                            <RadioButton GroupName="Phones" Margin="4">iPhone 6S</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">iPhone 6S Plus</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Lumia 550</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Lumia 950</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Nexus 5X</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Nexus 6P</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Galaxy S6 Edge</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Nexus 5X</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Nexus 6P</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Galaxy S6 Edge</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Nexus 5X</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Nexus 6P</RadioButton>
-                            <RadioButton GroupName="Phones" Margin="4">Galaxy S6 Edge</RadioButton>
-                        </StackPanel>
-                    </GroupBox>
-                </ScrollViewer>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button Content="Up" Grid.Column="0" Margin="4" Click="Up_Click" />
-                    <Button Content="Down" Grid.Column="1" Margin="4" Click="Down_Click" />
-                </Grid>
+                <TextBox Name="SelectText" Height="30" SelectionBrush="Blue" Text="Текст для выделения"/>
+                <Button Content="Выделить текст" Height="30" Width="100" Click="Button_Click" Margin="10" />
             </StackPanel>
-            <Grid>
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="0 30 0 0">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                        <Button Height="20" MinWidth="30" Background="Yellow"/>
-                        <Button Height="20" MinWidth="30" Background="Green"/>
-                        <Button Height="20" MinWidth="30" Background="Blue"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <!--  Если не предполагается использование клавиш быстрого доступа,
+            то для вывода обычной текста вместо меток лучше использовать элемент TextBlock -->
+            <Label Target="{Binding ElementName=ClickToLabel}" HorizontalContentAlignment="Center">_Go to text box</Label>
+            <TextBox Name="ClickToLabel" Height="30" Width="100" VerticalContentAlignment="Center" Padding="3" Margin="0 0 0 10"></TextBox>
+
+            <Label Target="{Binding ElementName=Password}" HorizontalContentAlignment="Center">_Password</Label>
+            <PasswordBox Name="Password"  PasswordChar="*" MinHeight="30" Width="200" VerticalContentAlignment="Center" Padding="3"></PasswordBox>
         </StackPanel>
     </Grid>
 </Window>

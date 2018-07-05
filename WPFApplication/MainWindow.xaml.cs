@@ -25,20 +25,19 @@ namespace WPFApplication
             InitializeComponent();
         }
 
-        /*
-             LineUp(), LineDown(), LineRight(), LineLeft(): прокрутка соответственно вверх, вниз, вправо, влево.
-             ScrollToEnd(), ScrollToHome(): прокрутка в конец окна и в начало.
-             ScrollToRightEnd(), ScrollToLeftEnd(): прокрутка в правый и левый конец окна.
-        */
-        private void Up_Click(object sender, RoutedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            scroll.LineUp();
+            TextBox textBox = (TextBox)sender;
+            MessageBox.Show(textBox.Text);
         }
 
-        private void Down_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            scroll.LineDown();
+            SelectText.SelectionStart =  5;
+            SelectText.SelectionLength = 10;
+            SelectText.Focus();
+            // данное выражение эквивалентно
+            //SelectText.Select(5, 10);
         }
-
     }
 }
