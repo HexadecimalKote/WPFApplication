@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace WPFApplication
 {
-    class Phone
+    public class Phone
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Company { get; set; }
         public int Price { get; set; }
 
         public override string ToString()
         {
-            return $"Смартфон {this.Name}; цена: {this.Price}";
+            return $"Title {this.Title}; Price: {this.Price}; Company: {this.Company}";
         }
     }
 }

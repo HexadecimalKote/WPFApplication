@@ -4,73 +4,104 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplication"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Text controls" Height="350" Width="800">
+        Title="ListBox" Height="500" Width="800">
 
-
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.Row="0">
-            <!--TextBlock выводит статический текст -->
-            <!--LineHeight    - Высота строки
-                TextWrapping  - Настройка переноса текста по умолчанию NoWrap
-                TextAlignment - Выравнивание текста
-                TextDecorations - декорация текста -->
-            <TextBlock FontSize="20" Foreground="Gray">Some text...</TextBlock>
-            <TextBlock FontSize="15" Foreground ="DarkGreen" Margin="15 0 0 0">Some text...</TextBlock>
-            <TextBlock TextWrapping="Wrap">
-                <Run FontSize="20" Foreground="Red" FontWeight="Bold">O</Run>
-                <Run FontSize="16" Foreground="LightSeaGreen">негин был, один из немногих................/////////........// вап вап</Run>
-            </TextBlock>
-            <TextBlock Margin="0 20 0 0">
-                Некий текст..........
-                <LineBreak/>
-                <Run TextDecorations="Underline" Foreground="DarkGreen">
-                    Перевод на новую строку
-                </Run>
-            </TextBlock>
-        </StackPanel>
-        
-        <StackPanel Grid.Column="1" Grid.Row="0">
-            <!--TextChanged="TextBox_TextChanged" событие на изменение содержимого -->
-            <!--AcceptsReturn="True" - перенос строки по нажатию enter -->
-            <!--AcceptsTab="True" - разрешить использоват табуляцию -->
-            <!--MaxLength="250" - Максимальное количество введенных символов -->
-            <!--IsReadOnly="True" - сделать недоступным для ввода -->
-            <!--SpellCheck.IsEnabled="True" - включить проверку орфографии -->
-            <!--Language="ru-ru" - язык ввода русский -->
+        <ListBox Name="ListXaml" Grid.Row="0" Grid.Column="0">
+            <sys:String>Lumia 950</sys:String>
+            <sys:String>iPhone 6s</sys:String>
+            <sys:String>Xiomi Mi5</sys:String>
+            <sys:String>Nexus 5x</sys:String>
+        </ListBox>
 
-            <TextBox Padding="10"
-                     Height="80"
-                     VerticalScrollBarVisibility="Auto"
-                     AcceptsReturn="True"
-                     AcceptsTab="True" 
-                     TextWrapping="Wrap"
-                     SpellCheck.IsEnabled="True"
-                     Language="ru-ru">Привет как дила? Проверка орфографии.</TextBox>
+        <ListBox Name="ListCSharpArray" Grid.Row="0" Grid.Column="1" />
 
-            <StackPanel>
-                <TextBox Name="SelectText" Height="30" SelectionBrush="Blue" Text="Текст для выделения"/>
-                <Button Content="Выделить текст" Height="30" Width="100" Click="Button_Click" Margin="10" />
+        <!--DisplayMemberPath если не определить будет использоваться метод класса ToString-->
+        <ListBox Name="ListCSharpClass" Grid.Row="0" Grid.Column="2" DisplayMemberPath="Title">
+            <local:Phone Title="iPhone 6s"   Company="Apple"     Price="54900" />
+            <local:Phone Title="Lumia 950XL" Company="Microsoft" Price="39990" />
+            <local:Phone Title="Nexus 5x"    Company="Google"    Price="29990" />
+        </ListBox>
+
+        <ListBox Name="ListCSharpInCode" Grid.Row="1" Grid.Column="0" />
+        <ListBox Name="ListCSharpSelectedEvent" Grid.Row="1" Grid.Column="1" SelectionChanged="ListCSharpSelectedEvent_SelectionChanged" DisplayMemberPath="Title"/>
+
+        <ListBox Name="phonesList" Grid.Row="1" Grid.Column="2">
+            <TextBlock FontWeight="Bold" TextDecorations="Underline" Text="Новинки 2015 года" />
+            <ListBoxItem Background="LightGray">LG Nexus 5X</ListBoxItem>
+            <ListBoxItem>Huawei Nexus 6P</ListBoxItem>
+            <ListBoxItem Background="LightGray">iPhone 6S</ListBoxItem>
+            <ListBoxItem>iPhone 6S Plus</ListBoxItem>
+            <ListBoxItem Background="LightGray">Аsus Zenphone 2</ListBoxItem>
+            <ListBoxItem>Microsoft Lumia 950</ListBoxItem>
+        </ListBox>
+
+        <!--SelectionMode="Single"   - по умолчанию-->
+        <!--SelectionMode="Multiple" - множественный выбор-->
+        <!--SelectionMode="Extended" - множественный выбор при зажатой кнопке ctrl и Shift -->
+        <ListBox Name="CatPhoto" Background="Lavender" Grid.Row="2" Grid.Column="0" SelectionMode="Extended">
+            <ListBoxItem Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Resources\ball_golf.png" Width="64"/>
+                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">Гольф</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Image Source="Resources\ball_basketball.png" Width="64"/>
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">Гольф</TextBlock>
             </StackPanel>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Image Source="Resources\ball_bowling.png" Width="64"/>
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">Гольф</TextBlock>
+            </StackPanel>
+        </ListBox>
 
-        <StackPanel Grid.Column="0" Grid.Row="1">
-            <!--  Если не предполагается использование клавиш быстрого доступа,
-            то для вывода обычной текста вместо меток лучше использовать элемент TextBlock -->
-            <Label Target="{Binding ElementName=ClickToLabel}" HorizontalContentAlignment="Center">_Go to text box</Label>
-            <TextBox Name="ClickToLabel" Height="30" Width="100" VerticalContentAlignment="Center" Padding="3" Margin="0 0 0 10"></TextBox>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid Width="220" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Height="80" VerticalAlignment="Top" Margin="0 10 0 0">
+                    <StackPanel Height="80">
+                        <Label Target="{Binding ElementName=Title}" Width="100">Phone _title:</Label>
+                        <Label Target="{Binding ElementName=Company}" Width="100">Phone _company:</Label>
+                        <Label Target="{Binding ElementName=Price}" Width="100">Phone _price:</Label>
+                    </StackPanel>
+                    <StackPanel Height="80" >
+                        <TextBox Name="Title" Width="100" Height="20" Margin="3" ></TextBox>
+                        <TextBox Name="Company" Width="100" Height="20" Margin="3" ></TextBox>
+                        <TextBox Name="Price" Width="100" Height="20" Margin="3" ></TextBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Height="20" 
+                            Width="200" 
+                            VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Left"
+                            Margin="0 0 0 35">
 
-            <Label Target="{Binding ElementName=Password}" HorizontalContentAlignment="Center">_Password</Label>
-            <PasswordBox Name="Password"  PasswordChar="*" MinHeight="30" Width="200" VerticalContentAlignment="Center" Padding="3"></PasswordBox>
-        </StackPanel>
+                    <Button Margin="5 0 35 0" IsDefault="True" Width="80" Click="OnClick_AddToList">Добавить</Button>
+                    <Button Width="80" Click="OnClick_RemoveFromList">Удалить</Button>
+                </StackPanel>
+            </Grid>
+            <StackPanel HorizontalAlignment="Right" Margin="0 10 0 0">
+                <ListBox Name="ListCSharpAddRemoveElement" Grid.Row="0" Grid.Column="2" MinWidth="220" MinHeight="100">
+                    <TextBlock Background="Aqua" FontWeight="Bold">Список телефонов</TextBlock>
+                    <local:Phone Title="iPhone 6s"   Company="Apple"     Price="54900" />
+                    <local:Phone Title="Lumia 950XL" Company="Microsoft" Price="39990" />
+                    <local:Phone Title="Nexus 5x"    Company="Google"    Price="29990" />
+                </ListBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
