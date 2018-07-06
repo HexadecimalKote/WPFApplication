@@ -6,102 +6,41 @@
         xmlns:local="clr-namespace:WPFApplication"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="ListBox" Height="500" Width="800">
+        Title="ComboBox" Height="300" Width="600">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <UniformGrid Columns="2" Rows="1">
+        <!--ComboBoxItem - элемент управления содержимым -->
+        <!--IsEditable="True" - ввод начальных символов для поиска -->
+        <!--SelectionChanged="ComboBox_Selected" - событие изменения выбора -->
+        <!--IsReadOnly="True" - только для чтения-->
+        <!--StaysOpenOnEdit - раскрыть список при вводе-->
+        <ComboBox Name="phoneList" Height="30" VerticalAlignment="Top"  VerticalContentAlignment="Center" IsEditable="True" StaysOpenOnEdit="True">
+            <TextBlock>LG Nexus 5X</TextBlock>
+            <TextBlock>Huawai Nexus 6P</TextBlock>
+            <TextBlock>iPhone 6S</TextBlock>
+            <TextBlock>iPhone 6S Plus</TextBlock>
+            <TextBlock>Microsoft Lumia 950</TextBlock>
+        </ComboBox>
 
-        <ListBox Name="ListXaml" Grid.Row="0" Grid.Column="0">
-            <sys:String>Lumia 950</sys:String>
-            <sys:String>iPhone 6s</sys:String>
-            <sys:String>Xiomi Mi5</sys:String>
-            <sys:String>Nexus 5x</sys:String>
-        </ListBox>
-
-        <ListBox Name="ListCSharpArray" Grid.Row="0" Grid.Column="1" />
-
-        <!--DisplayMemberPath если не определить будет использоваться метод класса ToString-->
-        <ListBox Name="ListCSharpClass" Grid.Row="0" Grid.Column="2" DisplayMemberPath="Title">
-            <local:Phone Title="iPhone 6s"   Company="Apple"     Price="54900" />
-            <local:Phone Title="Lumia 950XL" Company="Microsoft" Price="39990" />
-            <local:Phone Title="Nexus 5x"    Company="Google"    Price="29990" />
-        </ListBox>
-
-        <ListBox Name="ListCSharpInCode" Grid.Row="1" Grid.Column="0" />
-        <ListBox Name="ListCSharpSelectedEvent" Grid.Row="1" Grid.Column="1" SelectionChanged="ListCSharpSelectedEvent_SelectionChanged" DisplayMemberPath="Title"/>
-
-        <ListBox Name="phonesList" Grid.Row="1" Grid.Column="2">
-            <TextBlock FontWeight="Bold" TextDecorations="Underline" Text="Новинки 2015 года" />
-            <ListBoxItem Background="LightGray">LG Nexus 5X</ListBoxItem>
-            <ListBoxItem>Huawei Nexus 6P</ListBoxItem>
-            <ListBoxItem Background="LightGray">iPhone 6S</ListBoxItem>
-            <ListBoxItem>iPhone 6S Plus</ListBoxItem>
-            <ListBoxItem Background="LightGray">Аsus Zenphone 2</ListBoxItem>
-            <ListBoxItem>Microsoft Lumia 950</ListBoxItem>
-        </ListBox>
-
-        <!--SelectionMode="Single"   - по умолчанию-->
-        <!--SelectionMode="Multiple" - множественный выбор-->
-        <!--SelectionMode="Extended" - множественный выбор при зажатой кнопке ctrl и Shift -->
-        <ListBox Name="CatPhoto" Background="Lavender" Grid.Row="2" Grid.Column="0" SelectionMode="Extended">
-            <ListBoxItem Margin="3">
+        <ComboBox Height="70" VerticalAlignment="Top" Width="170">
+            <ComboBoxItem IsSelected="True">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Resources\ball_golf.png" Width="64"/>
-                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">Гольф</TextBlock>
+                    <Image Source="Resources/ball_basketball.png"/>
+                    <TextBlock VerticalAlignment="Center">Basketball</TextBlock>
                 </StackPanel>
-            </ListBoxItem>
-            <StackPanel Orientation="Horizontal" Margin="3">
-                <Image Source="Resources\ball_basketball.png" Width="64"/>
-                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">Гольф</TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="3">
-                <Image Source="Resources\ball_bowling.png" Width="64"/>
-                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">Гольф</TextBlock>
-            </StackPanel>
-        </ListBox>
-
-        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <Grid Width="220" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" Height="80" VerticalAlignment="Top" Margin="0 10 0 0">
-                    <StackPanel Height="80">
-                        <Label Target="{Binding ElementName=Title}" Width="100">Phone _title:</Label>
-                        <Label Target="{Binding ElementName=Company}" Width="100">Phone _company:</Label>
-                        <Label Target="{Binding ElementName=Price}" Width="100">Phone _price:</Label>
-                    </StackPanel>
-                    <StackPanel Height="80" >
-                        <TextBox Name="Title" Width="100" Height="20" Margin="3" ></TextBox>
-                        <TextBox Name="Company" Width="100" Height="20" Margin="3" ></TextBox>
-                        <TextBox Name="Price" Width="100" Height="20" Margin="3" ></TextBox>
-                    </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Resources/ball_golf.png"/>
+                    <TextBlock VerticalAlignment="Center">Golf</TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" 
-                            Height="20" 
-                            Width="200" 
-                            VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left"
-                            Margin="0 0 0 35">
-
-                    <Button Margin="5 0 35 0" IsDefault="True" Width="80" Click="OnClick_AddToList">Добавить</Button>
-                    <Button Width="80" Click="OnClick_RemoveFromList">Удалить</Button>
+            </ComboBoxItem>
+            <ComboBoxItem IsEnabled="False">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Resources/ball_bowling.png"/>
+                    <TextBlock VerticalAlignment="Center">Basketball</TextBlock>
                 </StackPanel>
-            </Grid>
-            <StackPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                <ListBox Name="ListCSharpAddRemoveElement" Grid.Row="0" Grid.Column="2" MinWidth="220" MinHeight="100">
-                    <TextBlock Background="Aqua" FontWeight="Bold">Список телефонов</TextBlock>
-                    <local:Phone Title="iPhone 6s"   Company="Apple"     Price="54900" />
-                    <local:Phone Title="Lumia 950XL" Company="Microsoft" Price="39990" />
-                    <local:Phone Title="Nexus 5x"    Company="Google"    Price="29990" />
-                </ListBox>
-            </StackPanel>
-        </Grid>
-    </Grid>
+            </ComboBoxItem>
+        </ComboBox>
+    </UniformGrid>
 </Window>
