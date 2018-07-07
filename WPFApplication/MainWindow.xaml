@@ -7,55 +7,71 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="TabControl" Height="300" Width="600">
+        Title="Menu" Height="400" Width="600">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    
+    <UniformGrid Rows="2" Columns="2">
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New Project"></MenuItem>
+                <MenuItem Header="Open Project">
+                    <MenuItem Header="WinForms"></MenuItem>
+                    <MenuItem Header="WPF"></MenuItem>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" Click="OnExitItem_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit"></MenuItem>
+            <MenuItem Header="View"></MenuItem>
+        </Menu>
 
-        <TabControl Grid.Row="0" Grid.Column="0">
-            <TabItem Header="Вкладка 1">Первая вкладка</TabItem>
-            <TabItem Header="Вкладка 2" Content="Вторая вкладка"/>
-        </TabControl>
+        <!--Элементы вложенные в Menu будут неявно преобразованы в MenuItem-->
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <Button Content="Exit" />
+            </MenuItem>
+            <MenuItem Header="Edit"></MenuItem>
+            <MenuItem Header="View"></MenuItem>
+            <Button Content="Кнопка в меню" />
+        </Menu>
 
-        <TabControl x:Name="products" Grid.Row="0" Grid.Column="1">
-            <TabItem x:Name="smartphonesTab">
-                <TabItem.Header>
+        <Menu Height="25" VerticalAlignment="Top" Background="LightGray">
+            <MenuItem>
+                <MenuItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Ellipse Height="10" Width="10" Fill="Black" />
-                        <TextBlock Margin="3">Смартфоны</TextBlock>
+                        <Ellipse Height="10" Width="10" Fill="Black" Margin="0 0 5 0" />
+                        <TextBlock>File</TextBlock>
                     </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <StackPanel>
-                        <RadioButton IsChecked="True">iPhone S6</RadioButton>
-                        <RadioButton>LG G 4</RadioButton>
-                        <RadioButton>Lumia 550</RadioButton>
-                    </StackPanel>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem x:Name="tabletsTab">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Height="10" Width="10" Fill="Black" />
-                        <TextBlock Margin="3">Планшеты</TextBlock>
-                    </StackPanel>
-                </TabItem.Header>
-            </TabItem>
-        </TabControl>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem.Icon>
+                    <Image Source="Resources\edit.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="View" Click="MenuItem_Click"></MenuItem>
+        </Menu>
 
-        <TabControl Grid.Row="1" Grid.Column="0">
-            <TextBlock>Первая вкладка</TextBlock>
-            <TextBlock>Вторая вкладка</TextBlock>
-            <TextBlock>Третья вкладка</TextBlock>
-        </TabControl>
+        <Grid>
+            <Menu Height="40" VerticalAlignment="Top" Background="Aqua">
+                <MenuItem Header="Файл"/>
+                <MenuItem Header="Правка"/>
+                <MenuItem Header="Вид"/>
+            </Menu>
 
-        <TabControl Name="otherProducts" Grid.Row="1" Grid.Column="1"></TabControl>
-    </Grid>
+            <ListBox Name="list" Height="100">
+                <ListBoxItem Margin="3">MS SQL Server</ListBoxItem>
+                <ListBoxItem Margin="3">MySQL</ListBoxItem>
+                <ListBoxItem Margin="3">Oracle</ListBoxItem>
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Копировать"></MenuItem>
+                        <MenuItem Header="Вставить"></MenuItem>
+                        <MenuItem Header="Вырезать"></MenuItem>
+                        <MenuItem Header="Удалить"></MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+        </Grid>
+    </UniformGrid>
 </Window>

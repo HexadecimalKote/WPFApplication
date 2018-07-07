@@ -13,23 +13,17 @@ namespace WPFApplication
         public MainWindow()
         {
             InitializeComponent();
-            CreateTab();
         }
 
-        private void CreateTab()
+        private void OnExitItem_Click(object sender, RoutedEventArgs e)
         {
-            ListBox notesList = new ListBox();
-            notesList.Items.Add("Macbook Pro");
-            notesList.Items.Add("HP Pavilion 5478");
-            notesList.Items.Add("Acer LK-08");
+            Close();
+        }
 
-            otherProducts.Items.Add(
-                new TabItem
-                {
-                    Header = new TextBlock { Text = "Ноутбуки in C# code" },
-                    Content = notesList
-                }
-            );
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem view = (MenuItem)sender;
+            MessageBox.Show(view.Header.ToString());
         }
     }
 }
