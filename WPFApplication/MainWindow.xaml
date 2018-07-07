@@ -7,41 +7,61 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="ProgressBar and Slider" Height="150" Width="400">
+        Title="Calendar и DatePicker" Height="300" Width="800">
 
-    <UniformGrid>
-        <StackPanel>
-            <!--
-                Orientation: указывает ориентацию ползунка - 
-                    горизонтальную(Horizontal) или вертикальную (Vertical)
-            
-                Delay: указывает время в миллисекундах, по истечении которого 
-                    ползунок переместится на одну единицу после щелчка.
-            
-                Interval: указывает время в миллисекундах, по истечении 
-                    которого ползунок может перемещаться
-            
-                TickPlacement: задает визуализацию шкалы ползунка.
-                    По умолчанию имеет значение None (отсутствие шкалы).
-                    Значение BottomRight создают шкалу в нижней части ползунка,
-                    TopLeft - в верхней, Both - по обоим сторонам.
-            
-                TickFrequency: указывает частоту появления отметок на шкале ползунка.
-            
-                IsSelectionRangeEnabled: задает затенение участка ползунка. 
-                     Если оно установлено в True, то начальная и конечная отметка 
-                    затенения задаются с помощью свойств SelectionStart и SelectionEnd.
-            -->
-            <!-- Slider - Представляет собой обычный ползунок -->
-            <Slider Value="0"  Minimum="0" Maximum="100" 
-                    SelectionStart="0" Height="30" Width="200"
-                    IsSelectionRangeEnabled="True"
-                    TickPlacement="BottomRight"
-                    TickFrequency="10"
-                    ValueChanged="Slider_ValueChanged" />
-            <!--ProgressBar представляет индикатор, отображающий выполнение определенного процесса. -->
-            <ProgressBar Minimum="0" Maximum="100" Value="50" Height="25" />
-        </StackPanel>
+    <UniformGrid Rows="1" Columns="2">
+        <!-- Calendar представляет собой элемент в виде календаря -->
+        <!-- DisplayMode - формат отображения дат 
+                Month (по умолчанию) отображает все дни текущего месяца
+                Decade отображает все года текущего десятилетия
+                Year отображает все месяцы текущего года
+            SelectionMode - Способ выделения
+                SingleDate (по умолчанию) выделяет только одну дату
+                None запрещает выделение
+                SingleRange по нажатию на Ctrl выделяет несколько последовательно идущих дат
+                MultipleRange по нажатию на Ctrl выделяет несколько не последовательно идущих диапазонов дат
+        -->
+
+        <Calendar x:Name="calendar1" FirstDayOfWeek="Monday"
+                  Margin="0 20 0 0"
+            SelectedDatesChanged="Calendar_SelectedDatesChanged" SelectionMode="MultipleRange">
+            <Calendar.BlackoutDates>
+                                      <!--mm/dd/yyyy-->
+                <CalendarDateRange Start="07/01/2018" End="07/06/2018"></CalendarDateRange>
+            </Calendar.BlackoutDates>
+            <Calendar.SelectedDates>
+                <sys:DateTime>07/11/2018</sys:DateTime>
+                <sys:DateTime>07/14/2018</sys:DateTime>
+                <sys:DateTime>07/16/2018</sys:DateTime>
+            </Calendar.SelectedDates>
+        </Calendar>
+
+        <!-- DatePicker - текстовое поле для ввода даты с выпадающим календарем после ввода -->
+        <!--IsDropDownOpen 
+            показывает, будет ли связанный с элементом всплывающий 
+            календарь оставаться открытым после выбора даты)
+        
+        SelectedDateFormat формат даты, принимает значение 
+            Short - формат в виде дд.мм.гггг или мм.дд.гггг 
+            Long - с полными названиями месяцев
+        -->
+        <DatePicker Name="dataPicker" IsDropDownOpen="True" SelectedDateFormat="Short" Margin="0 20 0 0"/>
+
+        <!-- Общие свойства
+        
+            BlackoutDates Принимает в качестве значения объект CalendarDateRange, 
+                задающий с помощью свойств Start и End диапазон дат, 
+                которые будут зачеркнуты в календаре.
+        
+            DisplayDateStart и DisplayDateEnd Задают соответственно начальную и конечную дату
+                диапазона, который будет отображаться в календаре.
+        
+            IsTodayHighlighted Отмечает, будет ли выделена текущая дата
+        
+            SelectedDate(SelectedDates) Задает выделенную дату (диапазон выделенных дат)
+        
+            FirstDayOfWeek Задает первый день недели
+        -->
     </UniformGrid>
 
 </Window>

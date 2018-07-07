@@ -12,12 +12,14 @@ namespace WPFApplication
     {
         public MainWindow()
         {
-            InitializeComponent();   
+            InitializeComponent();
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((Slider)sender).SelectionEnd = e.NewValue;
+            DateTime? selectedDate = calendar1.SelectedDate;
+
+            MessageBox.Show(selectedDate.Value.Date.ToShortDateString());
         }
     }
 }
