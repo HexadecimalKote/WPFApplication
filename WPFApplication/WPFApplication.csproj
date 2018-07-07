@@ -113,5 +113,17 @@
   <ItemGroup>
     <Resource Include="Resources\edit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\telegram.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

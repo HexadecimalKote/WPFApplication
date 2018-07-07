@@ -7,71 +7,63 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Menu" Height="400" Width="600">
+        Title="Toolbar" Height="300" Width="700">
 
-    
-    <UniformGrid Rows="2" Columns="2">
-        <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="New Project"></MenuItem>
-                <MenuItem Header="Open Project">
-                    <MenuItem Header="WinForms"></MenuItem>
-                    <MenuItem Header="WPF"></MenuItem>
-                </MenuItem>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ToolBar Height="25" VerticalAlignment="Top">
+            <ToggleButton>
+                <Image Source="Resources/comment.png" />
+            </ToggleButton>
+            <Separator />
+            <Button>
+                <Image Source="Resources/twitter.png" />
+            </Button>
+            <Separator />
+            <Button>
+                <Image Source="Resources/facebook.png" />
+            </Button>
+            <Separator />
+            <Button>
+                <Image Source="Resources/telegram.png" />
+            </Button>
+            <TextBox Foreground="LightGray" Width="100">Поиск...</TextBox>
+        </ToolBar>
+
+        <!-- ToolBarTray позволяет создать несколько связанных toolbar-ов -->
+        <!-- Orientation="Vertical" - разместить toolbar вертикально -->
+        <ToolBarTray Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Top">
+            <ToolBar Height="25" VerticalAlignment="Top">
+                <ToggleButton>
+                    <Image Source="Resources/comment.png" />
+                </ToggleButton>
                 <Separator />
-                <MenuItem Header="Exit" Click="OnExitItem_Click"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Edit"></MenuItem>
-            <MenuItem Header="View"></MenuItem>
-        </Menu>
-
-        <!--Элементы вложенные в Menu будут неявно преобразованы в MenuItem-->
-        <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="File">
-                <Button Content="Exit" />
-            </MenuItem>
-            <MenuItem Header="Edit"></MenuItem>
-            <MenuItem Header="View"></MenuItem>
-            <Button Content="Кнопка в меню" />
-        </Menu>
-
-        <Menu Height="25" VerticalAlignment="Top" Background="LightGray">
-            <MenuItem>
-                <MenuItem.Header>
+                <Button>
+                    <Image Source="Resources/twitter.png" />
+                </Button>
+                <Separator />
+                <Button>
+                    <Image Source="Resources/facebook.png" />
+                </Button>
+                <Separator />
+                <Button>
+                    <Image Source="Resources/twitter.png" />
+                </Button>
+                <TextBox Foreground="LightGray" Width="100">Поиск...</TextBox>
+            </ToolBar>
+            <ToolBar>
+                <Button>
                     <StackPanel Orientation="Horizontal">
-                        <Ellipse Height="10" Width="10" Fill="Black" Margin="0 0 5 0" />
-                        <TextBlock>File</TextBlock>
+                        <Ellipse Width="10" Height="10" Fill="Black"  HorizontalAlignment="Left"/>
+                        <TextBlock HorizontalAlignment="Right" Width="60" Margin="5 0 0 0">Найти</TextBlock>
                     </StackPanel>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem.Icon>
-                    <Image Source="Resources\edit.png"></Image>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="View" Click="MenuItem_Click"></MenuItem>
-        </Menu>
-
-        <Grid>
-            <Menu Height="40" VerticalAlignment="Top" Background="Aqua">
-                <MenuItem Header="Файл"/>
-                <MenuItem Header="Правка"/>
-                <MenuItem Header="Вид"/>
-            </Menu>
-
-            <ListBox Name="list" Height="100">
-                <ListBoxItem Margin="3">MS SQL Server</ListBoxItem>
-                <ListBoxItem Margin="3">MySQL</ListBoxItem>
-                <ListBoxItem Margin="3">Oracle</ListBoxItem>
-                <ListBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Копировать"></MenuItem>
-                        <MenuItem Header="Вставить"></MenuItem>
-                        <MenuItem Header="Вырезать"></MenuItem>
-                        <MenuItem Header="Удалить"></MenuItem>
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-            </ListBox>
-        </Grid>
-    </UniformGrid>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+    </Grid>
+    
 </Window>
