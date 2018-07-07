@@ -7,30 +7,74 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="TreeView" Height="200" Width="400">
+        Title="DataGrid" Height="300" Width="800">
 
-    <Grid>
-        <TreeView>
-            <TextBlock>Элемент TreeView</TextBlock>
-            <TreeViewItem Header="Базы данных" Expanded="TreeViewItem_Expanded">
-                <TreeViewItem Header="MYSQL Server" Selected="TreeViewItem_Selected"/>
-                <TreeViewItem Header="MYSQL" Selected="TreeViewItem_Selected"/>
-                <TreeViewItem Header="MongoDB" Selected="TreeViewItem_Selected"/>
-                <TreeViewItem Header="Postgres" Selected="TreeViewItem_Selected"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Языки программирования" IsExpanded="True" >
-                <TreeViewItem Header="C-языки">
-                    <TreeViewItem Header="C#" />
-                    <TreeViewItem Header="C/C++" />
-                    <TreeViewItem Header="Java" />
-                </TreeViewItem>
-                <TreeViewItem Header="Basic">
-                    <TreeViewItem Header="Visual Basic" />
-                    <TreeViewItem Header="VB.Net" />
-                    <TreeViewItem Header="PureBasic" />
-                </TreeViewItem>
-            </TreeViewItem>
-        </TreeView>
-    </Grid>
+    <UniformGrid Rows="2" Columns="2">
+
+        <DataGrid x:Name="phonesGrid_0" AutoGenerateColumns="True" ItemsSource="{DynamicResource ResourceKey=phones}">
+            <DataGrid.Resources>
+                <col:ArrayList x:Key="phones">
+                    <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                    <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                    <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+                </col:ArrayList>
+            </DataGrid.Resources>
+        </DataGrid>
+
+        <DataGrid Name="phonesGrid_1" AutoGenerateColumns="True"/>
+
+
+        <!-- DataGrid.Columns
+        DataGridTextColumn Отображает элемент TextBlock или TextBox при редактировании
+        
+        DataGridHyperlinkColumn Представляет гиперссылку и позволяет переходить по указанному адресу
+        
+        DataGridCheckBoxColumn Отображает элемент CheckBox
+        
+        DataGridComboBoxColumn Отображает выпадающий список - элемент ComboBox
+        
+        DataGridTemplateColumn Позволяет задать специфичный шаблон для отображения столбца
+        -->
+        <DataGrid x:Name="phonesGrid_2" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
+                 RowBackground="LightGray" AlternatingRowBackground="White">
+
+            <DataGrid.Items>
+                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+            </DataGrid.Items>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
+                <DataGridHyperlinkColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="phonesGrid_3" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
+            RowBackground="LightGray" AlternatingRowBackground="White">
+
+            <DataGrid.Items>
+                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+            </DataGrid.Items>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
+                <DataGridHyperlinkColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
+            </DataGrid.Columns>
+
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Price}" />
+                        <TextBlock Text=" рублей по скидке" />
+                        <CheckBox Content="Hello"/>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
+        </DataGrid>
+    </UniformGrid>
 
 </Window>
