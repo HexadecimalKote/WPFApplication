@@ -14,12 +14,5 @@ namespace WPFApplication
         {
             InitializeComponent();
         }
-
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DateTime? selectedDate = calendar1.SelectedDate;
-
-            MessageBox.Show(selectedDate.Value.Date.ToShortDateString());
-        }
     }
 }

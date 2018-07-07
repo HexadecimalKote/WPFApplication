@@ -7,61 +7,47 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Calendar и DatePicker" Height="300" Width="800">
+        Title="Image and InkCanvas" Height="535" Width="900">
 
     <UniformGrid Rows="1" Columns="2">
-        <!-- Calendar представляет собой элемент в виде календаря -->
-        <!-- DisplayMode - формат отображения дат 
-                Month (по умолчанию) отображает все дни текущего месяца
-                Decade отображает все года текущего десятилетия
-                Year отображает все месяцы текущего года
-            SelectionMode - Способ выделения
-                SingleDate (по умолчанию) выделяет только одну дату
-                None запрещает выделение
-                SingleRange по нажатию на Ctrl выделяет несколько последовательно идущих дат
-                MultipleRange по нажатию на Ctrl выделяет несколько не последовательно идущих диапазонов дат
+        <Grid Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Name="mainImage">
+                <Image.Source>
+                    <FormatConvertedBitmap Source="Resources/mainCat.jpg"
+                        DestinationFormat="Gray32Float" />
+                </Image.Source>
+            </Image>
+            <StackPanel Grid.Column="1">
+                <Image Source="Resources/cat_1.jpg" />
+                <Image Source="Resources/cat_2.jpg" />
+                <Image Source="Resources/cat_3.jpg" />
+                <Image Source="Resources/cat_4.jpg" />
+            </StackPanel>
+        </Grid>
+        <!--EditingMode 
+        
+            Ink: используется по умолчанию и предполагает рисование стилусом или мышью
+        
+            InkAndGesture: рисование с помощью мыши/стилуса, а также с 
+                помощью жестов (Up, Down, Tap и др.)
+        
+            GestureOnly: рисование только с помощью жестов пользователя
+        
+            EraseByStroke: стирание всего штриха стилусом
+        
+            EraseByPoint: стирание только части штриха, к которой прикоснулся стилус
+        
+            Select: выделение всех штрихов при касании
+        
+            None: отсутствие какого-либо действия
         -->
-
-        <Calendar x:Name="calendar1" FirstDayOfWeek="Monday"
-                  Margin="0 20 0 0"
-            SelectedDatesChanged="Calendar_SelectedDatesChanged" SelectionMode="MultipleRange">
-            <Calendar.BlackoutDates>
-                                      <!--mm/dd/yyyy-->
-                <CalendarDateRange Start="07/01/2018" End="07/06/2018"></CalendarDateRange>
-            </Calendar.BlackoutDates>
-            <Calendar.SelectedDates>
-                <sys:DateTime>07/11/2018</sys:DateTime>
-                <sys:DateTime>07/14/2018</sys:DateTime>
-                <sys:DateTime>07/16/2018</sys:DateTime>
-            </Calendar.SelectedDates>
-        </Calendar>
-
-        <!-- DatePicker - текстовое поле для ввода даты с выпадающим календарем после ввода -->
-        <!--IsDropDownOpen 
-            показывает, будет ли связанный с элементом всплывающий 
-            календарь оставаться открытым после выбора даты)
-        
-        SelectedDateFormat формат даты, принимает значение 
-            Short - формат в виде дд.мм.гггг или мм.дд.гггг 
-            Long - с полными названиями месяцев
-        -->
-        <DatePicker Name="dataPicker" IsDropDownOpen="True" SelectedDateFormat="Short" Margin="0 20 0 0"/>
-
-        <!-- Общие свойства
-        
-            BlackoutDates Принимает в качестве значения объект CalendarDateRange, 
-                задающий с помощью свойств Start и End диапазон дат, 
-                которые будут зачеркнуты в календаре.
-        
-            DisplayDateStart и DisplayDateEnd Задают соответственно начальную и конечную дату
-                диапазона, который будет отображаться в календаре.
-        
-            IsTodayHighlighted Отмечает, будет ли выделена текущая дата
-        
-            SelectedDate(SelectedDates) Задает выделенную дату (диапазон выделенных дат)
-        
-            FirstDayOfWeek Задает первый день недели
-        -->
+        <InkCanvas HorizontalAlignment="Center" VerticalAlignment="Center" EditingMode="Select">
+            <Image Source="Resources/mainCat.jpg"  Width="300" Height="250"  />
+        </InkCanvas>
     </UniformGrid>
 
 </Window>
