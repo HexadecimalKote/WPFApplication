@@ -7,38 +7,55 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="ListView" Height="300" Width="600">
+        Title="TabControl" Height="300" Width="600">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-    <UniformGrid Rows="1" Columns="2">
+        <TabControl Grid.Row="0" Grid.Column="0">
+            <TabItem Header="Вкладка 1">Первая вкладка</TabItem>
+            <TabItem Header="Вкладка 2" Content="Вторая вкладка"/>
+        </TabControl>
 
-        <!-- Унаследован от класса ListBox, поэтому может вести себя простой список-->
-        <ListView>
-            <TextBlock>LG Nexus 5X</TextBlock>
-            <TextBlock>Huawei Nexus 6P</TextBlock>
-            <TextBlock>iPhone 6S</TextBlock>
-            <TextBlock>iPhone 6S Plus</TextBlock>
-            <TextBlock>Аsus Zenphone 2</TextBlock>
-            <TextBlock>Microsoft Lumia 950</TextBlock>
-        </ListView>
+        <TabControl x:Name="products" Grid.Row="0" Grid.Column="1">
+            <TabItem x:Name="smartphonesTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Смартфоны</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <RadioButton IsChecked="True">iPhone S6</RadioButton>
+                        <RadioButton>LG G 4</RadioButton>
+                        <RadioButton>Lumia 550</RadioButton>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="tabletsTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Планшеты</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
 
-        <!--ItemsSource="{DynamicResource ResourceKey=phones}" -->
-        <ListView Name="phonesList">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Title}">Модель</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Company}" Width="100">Компания</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
-                </GridView>
-            </ListView.View>
-            <!--<ListView.Resources>
-                <col:ArrayList x:Key="phones">
-                    <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                    <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                    <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-                    <local:Phone Title="Galaxy Edge" Company="Samsung" Price="45670" />
-                </col:ArrayList>
-            </ListView.Resources>-->
-        </ListView>
-    </UniformGrid>
+        <TabControl Grid.Row="1" Grid.Column="0">
+            <TextBlock>Первая вкладка</TextBlock>
+            <TextBlock>Вторая вкладка</TextBlock>
+            <TextBlock>Третья вкладка</TextBlock>
+        </TabControl>
+
+        <TabControl Name="otherProducts" Grid.Row="1" Grid.Column="1"></TabControl>
+    </Grid>
 </Window>

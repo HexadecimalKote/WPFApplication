@@ -10,20 +10,26 @@ namespace WPFApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Phone> phoneList;
-
         public MainWindow()
         {
             InitializeComponent();
+            CreateTab();
+        }
 
-            phoneList = new List<Phone>
-            {
-                new Phone { Title="iPhone 6S", Company="Apple",     Price=54990 },
-                new Phone { Title="Lumia 950", Company="Microsoft", Price=39990 },
-                new Phone { Title="Nexus 5X", Company="Google",     Price=29990 }
-            };
+        private void CreateTab()
+        {
+            ListBox notesList = new ListBox();
+            notesList.Items.Add("Macbook Pro");
+            notesList.Items.Add("HP Pavilion 5478");
+            notesList.Items.Add("Acer LK-08");
 
-            phonesList.ItemsSource = phoneList;
+            otherProducts.Items.Add(
+                new TabItem
+                {
+                    Header = new TextBlock { Text = "Ноутбуки in C# code" },
+                    Content = notesList
+                }
+            );
         }
     }
 }
