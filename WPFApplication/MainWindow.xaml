@@ -7,74 +7,41 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="DataGrid" Height="300" Width="800">
+        Title="ProgressBar and Slider" Height="150" Width="400">
 
-    <UniformGrid Rows="2" Columns="2">
-
-        <DataGrid x:Name="phonesGrid_0" AutoGenerateColumns="True" ItemsSource="{DynamicResource ResourceKey=phones}">
-            <DataGrid.Resources>
-                <col:ArrayList x:Key="phones">
-                    <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                    <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                    <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-                </col:ArrayList>
-            </DataGrid.Resources>
-        </DataGrid>
-
-        <DataGrid Name="phonesGrid_1" AutoGenerateColumns="True"/>
-
-
-        <!-- DataGrid.Columns
-        DataGridTextColumn Отображает элемент TextBlock или TextBox при редактировании
-        
-        DataGridHyperlinkColumn Представляет гиперссылку и позволяет переходить по указанному адресу
-        
-        DataGridCheckBoxColumn Отображает элемент CheckBox
-        
-        DataGridComboBoxColumn Отображает выпадающий список - элемент ComboBox
-        
-        DataGridTemplateColumn Позволяет задать специфичный шаблон для отображения столбца
-        -->
-        <DataGrid x:Name="phonesGrid_2" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
-                 RowBackground="LightGray" AlternatingRowBackground="White">
-
-            <DataGrid.Items>
-                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-            </DataGrid.Items>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
-                <DataGridHyperlinkColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <DataGrid x:Name="phonesGrid_3" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
-            RowBackground="LightGray" AlternatingRowBackground="White">
-
-            <DataGrid.Items>
-                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-            </DataGrid.Items>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
-                <DataGridHyperlinkColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
-            </DataGrid.Columns>
-
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Price}" />
-                        <TextBlock Text=" рублей по скидке" />
-                        <CheckBox Content="Hello"/>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-
-        </DataGrid>
+    <UniformGrid>
+        <StackPanel>
+            <!--
+                Orientation: указывает ориентацию ползунка - 
+                    горизонтальную(Horizontal) или вертикальную (Vertical)
+            
+                Delay: указывает время в миллисекундах, по истечении которого 
+                    ползунок переместится на одну единицу после щелчка.
+            
+                Interval: указывает время в миллисекундах, по истечении 
+                    которого ползунок может перемещаться
+            
+                TickPlacement: задает визуализацию шкалы ползунка.
+                    По умолчанию имеет значение None (отсутствие шкалы).
+                    Значение BottomRight создают шкалу в нижней части ползунка,
+                    TopLeft - в верхней, Both - по обоим сторонам.
+            
+                TickFrequency: указывает частоту появления отметок на шкале ползунка.
+            
+                IsSelectionRangeEnabled: задает затенение участка ползунка. 
+                     Если оно установлено в True, то начальная и конечная отметка 
+                    затенения задаются с помощью свойств SelectionStart и SelectionEnd.
+            -->
+            <!-- Slider - Представляет собой обычный ползунок -->
+            <Slider Value="0"  Minimum="0" Maximum="100" 
+                    SelectionStart="0" Height="30" Width="200"
+                    IsSelectionRangeEnabled="True"
+                    TickPlacement="BottomRight"
+                    TickFrequency="10"
+                    ValueChanged="Slider_ValueChanged" />
+            <!--ProgressBar представляет индикатор, отображающий выполнение определенного процесса. -->
+            <ProgressBar Minimum="0" Maximum="100" Value="50" Height="25" />
+        </StackPanel>
     </UniformGrid>
 
 </Window>
