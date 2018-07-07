@@ -7,63 +7,30 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Toolbar" Height="300" Width="700">
+        Title="TreeView" Height="200" Width="400">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-        <ToolBar Height="25" VerticalAlignment="Top">
-            <ToggleButton>
-                <Image Source="Resources/comment.png" />
-            </ToggleButton>
-            <Separator />
-            <Button>
-                <Image Source="Resources/twitter.png" />
-            </Button>
-            <Separator />
-            <Button>
-                <Image Source="Resources/facebook.png" />
-            </Button>
-            <Separator />
-            <Button>
-                <Image Source="Resources/telegram.png" />
-            </Button>
-            <TextBox Foreground="LightGray" Width="100">Поиск...</TextBox>
-        </ToolBar>
-
-        <!-- ToolBarTray позволяет создать несколько связанных toolbar-ов -->
-        <!-- Orientation="Vertical" - разместить toolbar вертикально -->
-        <ToolBarTray Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Top">
-            <ToolBar Height="25" VerticalAlignment="Top">
-                <ToggleButton>
-                    <Image Source="Resources/comment.png" />
-                </ToggleButton>
-                <Separator />
-                <Button>
-                    <Image Source="Resources/twitter.png" />
-                </Button>
-                <Separator />
-                <Button>
-                    <Image Source="Resources/facebook.png" />
-                </Button>
-                <Separator />
-                <Button>
-                    <Image Source="Resources/twitter.png" />
-                </Button>
-                <TextBox Foreground="LightGray" Width="100">Поиск...</TextBox>
-            </ToolBar>
-            <ToolBar>
-                <Button>
-                    <StackPanel Orientation="Horizontal">
-                        <Ellipse Width="10" Height="10" Fill="Black"  HorizontalAlignment="Left"/>
-                        <TextBlock HorizontalAlignment="Right" Width="60" Margin="5 0 0 0">Найти</TextBlock>
-                    </StackPanel>
-                </Button>
-            </ToolBar>
-        </ToolBarTray>
+        <TreeView>
+            <TextBlock>Элемент TreeView</TextBlock>
+            <TreeViewItem Header="Базы данных" Expanded="TreeViewItem_Expanded">
+                <TreeViewItem Header="MYSQL Server" Selected="TreeViewItem_Selected"/>
+                <TreeViewItem Header="MYSQL" Selected="TreeViewItem_Selected"/>
+                <TreeViewItem Header="MongoDB" Selected="TreeViewItem_Selected"/>
+                <TreeViewItem Header="Postgres" Selected="TreeViewItem_Selected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Языки программирования" IsExpanded="True" >
+                <TreeViewItem Header="C-языки">
+                    <TreeViewItem Header="C#" />
+                    <TreeViewItem Header="C/C++" />
+                    <TreeViewItem Header="Java" />
+                </TreeViewItem>
+                <TreeViewItem Header="Basic">
+                    <TreeViewItem Header="Visual Basic" />
+                    <TreeViewItem Header="VB.Net" />
+                    <TreeViewItem Header="PureBasic" />
+                </TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
     </Grid>
-    
+
 </Window>

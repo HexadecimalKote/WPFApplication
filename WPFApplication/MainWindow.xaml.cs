@@ -15,15 +15,16 @@ namespace WPFApplication
             InitializeComponent();
         }
 
-        private void OnExitItem_Click(object sender, RoutedEventArgs e)
+        private void TreeViewItem_Expanded(object sender, RoutedEventArgs e)
         {
-            Close();
+            TreeViewItem tvItem = (TreeViewItem)sender;
+            MessageBox.Show(tvItem.Header.ToString() + " раскрыт");
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
-            MenuItem view = (MenuItem)sender;
-            MessageBox.Show(view.Header.ToString());
+            TreeViewItem tvItem = (TreeViewItem)sender;
+            MessageBox.Show("Выбран узел: " + tvItem.Header.ToString());
         }
     }
 }
